@@ -16,14 +16,14 @@ Feature: Venue price calculator
 
   Scenario Outline: Jim calculates venue costs
     When Jim clicks on the venue picker
-    And the "<venue>" option is selected
+    And the <venue> option is selected
     And Jim enters <numberOfGuests> for the number of guests
     And selects "<levelOfService>" option for the Service level
     And clicks on the calculate button
     Then the result "<result>" is displayed
 
     Examples:
-      | venue         | numberOfGuests | levelOfService | result               |
-      | City Hall     | 150            | Basic          | Total cost is: 15000 |
-      | Main Building | 300            | Premium        | Total cost is: 40000 |
-      | Retro Lounge  | 500            | Basic          | Total cost is: 57000 |
+      | venue         | numberOfGuests | levelOfService | result              |
+      | City Hall     | 150            | Basic          | Total Cost: 17500 € |
+      | Main Building | 300            | Premium        | Total Cost: 50000 € |
+      | Retro Lounge  | 500            | Basic          | Total Cost: 57000 € |

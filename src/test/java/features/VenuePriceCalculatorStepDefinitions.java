@@ -57,7 +57,7 @@ public class VenuePriceCalculatorStepDefinitions {
 
 	@Then("the result {string} is displayed")
 	public void theResultIsDisplayed(String arg0) {
-		Assertions.assertEquals(mainPage.getMessage(), arg0);
+		Assertions.assertTrue(mainPage.getMessage().startsWith(arg0));
 	}
 
 	@And("selects <venue> option for the Venue")

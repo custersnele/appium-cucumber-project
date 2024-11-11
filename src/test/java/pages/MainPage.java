@@ -2,6 +2,7 @@ package pages;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -69,10 +70,20 @@ public class MainPage extends BasePage {
 
 	public void selectVenueOption(String venue) {
 		List<WebElement> venueItems = getDriver().findElements(AppiumBy.xpath("//android.widget.ScrollView//android.widget.TextView"));
-		for (WebElement venueItem : venueItems) {
-			System.out.println("Selecting " + venue + " / " + venueItem.getText());
-			if (venueItem.getText().equals(venue)) {
-				venueItem.click();
+		for (int i = 0; i < venueItems.size(); i++) {
+			try {
+				// Refetch the list item in each iteration to avoid stale references
+				WebElement venueItem = getDriver().findElements(AppiumBy.xpath("//android.widget.ScrollView//android.widget.TextView")).get(i);
+				System.out.println("Selecting " + venue + " / " + venueItem.getText());
+				if (venueItem.getText().equals(venue)) {
+					venueItem.click();
+					break; // Exit the loop once the desired item is clicked
+				}
+			} catch (StaleElementReferenceException e) {
+				System.out.println("StaleReferenceException caught, refetching element...");
+				// Refetch venueItems and continue the loop
+				venueItems = getDriver().findElements(AppiumBy.xpath("//android.widget.ScrollView//android.widget.TextView"));
+				i--; // Decrement the counter to retry the current index
 			}
 		}
 
