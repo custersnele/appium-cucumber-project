@@ -24,6 +24,6 @@ Feature: Venue price calculator
 
     Examples:
       | venue         | numberOfGuests | levelOfService | result              |
-      | City Hall     | 150            | Basic          | Total Cost: 17500 € |
-      | Main Building | 300            | Premium        | Total Cost: 50000 € |
-      | Retro Lounge  | 500            | Basic          | Total Cost: 57000 € |
+      | City Hall     | 150            | Basic          | Total Cost: 17500.00 € |
+      | Main Building | 300            | Premium        | Total Cost: 50000.00 € |
+      | Retro Lounge  | 500            | Basic          | Total Cost: 57000.00 € |
